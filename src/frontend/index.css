@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   FONT DECLARATIONS — CruiseCompare
+   Display: Playfair Display (serif elegance for headings)
+   Body: Plus Jakarta Sans (clean, premium feel)
+   ============================================================ */
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans-variable.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   DESIGN TOKENS — Ocean Luxury Palette
+   Primary: Deep ocean teal-blue
+   Accent: Warm sandy gold
+   Neutrals: Off-white + deep navy
+   ============================================================ */
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Ocean teal-blue palette */
+    --background: 0.98 0.003 220;
+    --foreground: 0.14 0.025 250;
+
+    --card: 1 0 0;
+    --card-foreground: 0.14 0.025 250;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.14 0.025 250;
+
+    /* Deep ocean primary */
+    --primary: 0.38 0.12 235;
+    --primary-foreground: 0.98 0 0;
+
+    /* Sandy warm secondary */
+    --secondary: 0.95 0.025 75;
+    --secondary-foreground: 0.25 0.04 55;
+
+    --muted: 0.94 0.008 220;
+    --muted-foreground: 0.52 0.025 240;
+
+    /* Warm teal accent */
+    --accent: 0.56 0.14 200;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.012 220;
+    --input: 0.90 0.012 220;
+    --ring: 0.38 0.12 235;
+
+    /* Chart colors — cruise line palette */
+    --chart-1: 0.56 0.14 200;
+    --chart-2: 0.38 0.12 235;
+    --chart-3: 0.72 0.15 75;
+    --chart-4: 0.65 0.18 160;
+    --chart-5: 0.55 0.2 30;
+
+    --sidebar: 0.14 0.025 250;
+    --sidebar-foreground: 0.94 0.008 220;
+    --sidebar-primary: 0.56 0.14 200;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.22 0.04 240;
+    --sidebar-accent-foreground: 0.94 0.008 220;
+    --sidebar-border: 0.22 0.04 240;
+    --sidebar-ring: 0.56 0.14 200;
+
+    /* Custom cruise brand tokens */
+    --ocean-deep: 0.18 0.06 235;
+    --ocean-mid: 0.38 0.12 235;
+    --ocean-light: 0.56 0.14 200;
+    --ocean-pale: 0.82 0.06 210;
+    --sand-warm: 0.85 0.09 75;
+    --sand-light: 0.95 0.025 75;
+    --gold-accent: 0.72 0.15 75;
+    --coral-accent: 0.65 0.18 35;
+
+    /* Competition / prize draw tokens */
+    --prize-gold: 0.78 0.17 82;
+    --prize-gold-deep: 0.58 0.16 72;
+    --prize-gold-light: 0.92 0.10 88;
+    --prize-success: 0.62 0.18 148;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", Georgia, serif;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .font-body {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+
+  .text-ocean-deep {
+    color: oklch(var(--ocean-deep));
+  }
+
+  .text-ocean-mid {
+    color: oklch(var(--ocean-mid));
+  }
+
+  .text-ocean-light {
+    color: oklch(var(--ocean-light));
+  }
+
+  .bg-ocean-deep {
+    background-color: oklch(var(--ocean-deep));
+  }
+
+  .bg-ocean-mid {
+    background-color: oklch(var(--ocean-mid));
+  }
+
+  .bg-ocean-light {
+    background-color: oklch(var(--ocean-light));
+  }
+
+  .bg-sand-warm {
+    background-color: oklch(var(--sand-warm));
+  }
+
+  .text-sand-warm {
+    color: oklch(var(--sand-warm));
+  }
+
+  .text-gold-accent {
+    color: oklch(var(--gold-accent));
+  }
+
+  .card-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -8px oklch(var(--ocean-mid) / 0.2);
+  }
+
+  .glass-card {
+    background: oklch(1 0 0 / 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(1 0 0 / 0.25);
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      to bottom,
+      oklch(var(--ocean-deep) / 0.3) 0%,
+      oklch(var(--ocean-deep) / 0.65) 50%,
+      oklch(var(--ocean-deep) / 0.85) 100%
+    );
+  }
+
+  .deal-badge {
+    background: oklch(var(--coral-accent));
+    color: white;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .price-tag {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+  }
+
+  .prize-badge {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--prize-gold)) 0%,
+      oklch(var(--prize-gold-deep)) 100%
+    );
+    color: oklch(0.15 0.04 60);
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 800;
+  }
+
+  .prize-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--prize-gold-deep)) 0%,
+      oklch(0.52 0.14 68) 40%,
+      oklch(var(--prize-gold)) 70%,
+      oklch(var(--prize-gold-light)) 100%
+    );
+  }
+
+  .competition-hero-gradient {
+    background: linear-gradient(
+      to bottom,
+      oklch(0.10 0.04 50 / 0.4) 0%,
+      oklch(0.12 0.05 55 / 0.7) 60%,
+      oklch(0.08 0.03 45 / 0.9) 100%
+    );
+  }
+
+  .success-glow {
+    box-shadow: 0 0 40px oklch(var(--prize-success) / 0.3),
+      0 8px 32px oklch(var(--prize-success) / 0.15);
+  }
+}
